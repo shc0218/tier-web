@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { DeleteCookie, getCookie, setCookie } from './cookie';
 import styled from 'styled-components';
@@ -239,13 +239,14 @@ function End() {
 
 function App() {
     return (
-        <Router>
+
+        <BrowserRouter basename="/tier-web">
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/vote" element={<Vote />} />
                 <Route path="/end" element={<End />} />
             </Routes>
-        </Router>
+        </BrowserRouter>
     );
 }
 
