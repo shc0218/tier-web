@@ -117,7 +117,7 @@ function Home() {
         e.preventDefault();
         const data = { key: key };
         try {
-            const response = await axios.post('http://14.36.184.113:3000/auth', data);
+            const response = await axios.post('https://tier-list.p-e.kr:8443/auth', data);
             setCookie('key', key);
             navigate('/vote');
         } catch (err) {
@@ -150,7 +150,7 @@ function Vote() {
     const auth = async () => {
         const data = { key: getCookie('key') };
         try {
-            const response = await axios.post('http://14.36.184.113:3000/auth', data);
+            const response = await axios.post('https://tier-list.p-e.kr:8443/auth', data);
             if (response.data.progress < 149) {
                 setImage(response.data.image_list[response.data.progress]);
                 setProgress(response.data.progress);
@@ -173,7 +173,7 @@ function Vote() {
         e.preventDefault();
         const data = { name: image, tier: tier, key: getCookie('key') };
         try {
-            const response = await axios.post('http://14.36.184.113:3000/vote', data);
+            const response = await axios.post('https://tier-list.p-e.kr:8443/vote', data);
             await auth();
         } catch (err) {
             console.error('오류 발생:', err);
@@ -209,7 +209,7 @@ function End() {
                 if (prev === 1) {
                     clearInterval(timer);
                     axios
-                        .post('http://14.36.184.113:3000/end', { key: getCookie('key') })
+                        .post('https://tier-list.p-e.kr:8443/end', { key: getCookie('key') })
                         .then((res) => {
                             console.log('✅ 삭제완료');
                         })
